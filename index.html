@@ -7,7 +7,68 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">
+            <h1>My<span>Contacts</span></h1>
+            <input type="text" class="searchBar" id="searchBar" placeholder="Search for a name or number">
+            <p id="numContacts"></p>
+        </div>
+        <div class="contactsContainer" id="contactsContainer"></div>
+        <button class="addBtn" id="addBtn">+</button>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal for adding a contact -->
+    <div id="modalBgAdd" class="modalBg">
+        <div class="modal">
+            <div class="modalHeader">
+                <h2>New Contact</h2>
+                <h4 class="modalClose" id="modalAddClose">X</h4>
+            </div>
+            <div class="formContainer">
+                <form id="form" class="form" autocomplete="off">
+                    <div class="formGroup">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="formInput" id="contactName" placeholder="Name (Required)" required>
+                    </div>
+                    <div class="formGroup">
+                        <label for="number">Phone number:</label>
+                        <input type="text" name="number" class="formInput" id="contactNumber" placeholder="09xxxxxxxxx (Required)" required>
+                    </div>
+                    <div class="formGroup">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" class="formInput" id="contactEmail" placeholder="example@mail.com">
+                    </div>
+                    <div class="formGroup">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" class="formInput" id="contactAddress" placeholder="House/Unit #,Building,Brgy,Town,Province">
+                    </div>
+                    <div class="formGroup">
+                        <label for="notes">Notes:</label>
+                        <input type="text" name="notes" class="formInput" id="contactNotes" placeholder="About the contact">
+                    </div>
+                    <div class="btnContainer">
+                        <button id="submitBtn" class="submitBtn" type="submit">Add</button>
+                        <button id="clearBtn" class="clearBtn" type="reset">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for confirmation message -->
+    <div id="modalBgConfirm" class="modalBg">
+        <div class="modal">
+            <div class="modalHeader">
+                <h3 id="confirmMsg"></h3>
+            </div>
+            <div class="confirmBtnContainer">
+                <button id="yesBtn" class="confirmBtns">Yes</button>
+                <button id="noBtn" class="confirmBtns">No</button>
+            </div>
+        </div>
+    </div>
+
 
     <script src="app.js"></script>
 </body>
