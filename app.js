@@ -92,6 +92,13 @@ function displayContacts(){
     //Fetch contacts from local storage
     const contacts = JSON.parse(localStorage.getItem('contacts'))
 
+    //Sort contacts alphabetically by name
+    contacts.sort((a,b) => {
+        if(a.name < b.name) return -1
+        else if(a.name > b.name) return 1
+        else return 0
+    })
+
     //Get container ID
     const cContainer = document.getElementById('contactsContainer')
 
