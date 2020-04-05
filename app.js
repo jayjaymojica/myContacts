@@ -45,7 +45,6 @@ document.getElementById('form').addEventListener('submit', function(e){
     e.preventDefault()
     localStorage.setItem('ID', ++contactID)
     addContact(contactID)
-    console.log(contactID)
 })
 
 // Function addContact adds the contact information to an object
