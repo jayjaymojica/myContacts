@@ -1,12 +1,3 @@
-/* CSS Variables */
-:root{
-    --primary: #007bff
-    --secondary: #28a745
-    --danger: #dc3545
-    --white: #f7f7f7
-    --gray: #6c757d
-}
-
 .modalHeader{
     background: #dddd;
     overflow: hidden;
@@ -82,6 +73,98 @@
     overflow: hidden;
 }
 
+.editBtn{
+    background: #007bff;
+    border: 1px solid white;
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #f7f7f7;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.editBtn:hover{
+    color: #007bff;
+    border: 1px solid #007bff;
+    background: white;
+    transition: 0.1s;
+}
+
+.updateBtn{
+    background: #28a745;
+    width: 80px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+    color: white;
+}
+
+.updateBtn:hover{
+    color: #28a745;
+    background: white;
+    border: 1px solid #28a745;
+    transition: 0.1s;
+}
+
+.cancelBtn{
+    background: #f7f7f7;
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    margin-left: 2px;
+    cursor: pointer;
+    display: none;
+}
+
+.cancelBtn:hover{
+    color: #f7f7f7;
+    background: #6c757d;
+    border: 1px solid #f7f7f7;
+    transition: 0.1s;
+}
+
+.deleteBtn{
+    background: #dc3545;
+    color: #f7f7f7;
+    border: 3px solid #f7f7f7;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.deleteBtn:hover{
+    background: #f7f7f7;
+    border: 3px solid #dc3545;
+    color: #dc3545;
+    transition: .1s;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.modalClose{
+    cursor: pointer;
+}
+
+/* Remove arrows in input field with type=number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
 /* Confirm Modal */
 .confirmBtnContainer{
     display: flex;
@@ -105,3 +188,4 @@
     border: 1px solid #f7f7f7;
     transition: 0.1s;
 }
+

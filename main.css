@@ -53,10 +53,6 @@ span{
     width: 50px;
     align-self: center;
     margin-top: -30px;
-    /* position: absolute;
-    display: float;
-    right: 50px;
-    bottom: 20px; */
 }
 
 .addBtn:hover{
@@ -76,4 +72,39 @@ span{
 
 .contactsContainer:hover{
     overflow: auto;
+}
+
+.contact{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+    padding: 10px 20px;
+    border-radius: 1px;
+    border-left: 3px solid #dddd;
+}
+
+.contact:hover{
+    border-left: 3px solid #007bff;
+    transition: .3s;
+}
+
+.contact-info{
+    cursor: pointer;
+}
+
+.contact-info:hover{
+    text-decoration: underline;
+    transition: .3s;
+}
+
+.sub-info{
+    color: #6c757d;
+}
+
+@media screen and (min-width: 960px){
+    body{
+        max-width: 80%;
+        margin: auto;
+    }
 }

@@ -33,11 +33,11 @@
                     </div>
                     <div class="formGroup">
                         <label for="number">Phone number:</label>
-                        <input type="text" name="number" class="formInput" id="contactNumber" placeholder="09xxxxxxxxx (Required)" required>
+                        <input type="number" name="number" class="formInput" id="contactNumber" placeholder="09xxxxxxxxx (Required)" required>
                     </div>
                     <div class="formGroup">
                         <label for="email">Email:</label>
-                        <input type="text" name="email" class="formInput" id="contactEmail" placeholder="example@mail.com">
+                        <input type="email" name="email" class="formInput" id="contactEmail" placeholder="example@mail.com">
                     </div>
                     <div class="formGroup">
                         <label for="address">Address:</label>
@@ -50,6 +50,45 @@
                     <div class="btnContainer">
                         <button id="submitBtn" class="submitBtn" type="submit">Add</button>
                         <button id="clearBtn" class="clearBtn" type="reset">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for viewing and editing a contact -->
+    <div id="modalBgViewEdit" class="modalBg">
+        <div class="modal">
+            <div class="modalHeader">
+                <h2>Contact Details</h2>
+                <h4 class="modalClose" id="modalViewEditClose">X</h4>
+            </div>
+            <div class="formContainer">
+                <form id="viewEditForm" class="form" autocomplete="off">
+                    <div class="formGroup">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="formInput formInput-ve" id="veName" placeholder="Name (Required)" required>
+                    </div>
+                    <div class="formGroup">
+                        <label for="number">Phone number:</label>
+                        <input type="number" name="number" class="formInput formInput-ve" id="veNumber" placeholder="09xxxxxxxxx (Required)" required>
+                    </div>
+                    <div class="formGroup">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" class="formInput formInput-ve" id="veEmail" placeholder="example@mail.com">
+                    </div>
+                    <div class="formGroup">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" class="formInput formInput-ve" id="veAddress" placeholder="House/Unit #,Building,Brgy,Town,Province">
+                    </div>
+                    <div class="formGroup">
+                        <label for="notes">Notes:</label>
+                        <input type="text" name="notes" class="formInput formInput-ve" id="veNotes" placeholder="About the contact">
+                    </div>
+                    <div class="btnContainer">
+                        <button class="editBtn">Edit</button>
+                        <button class="updateBtn" type="submit">Update</button>
+                        <button class="cancelBtn">Cancel</button>
                     </div>
                 </form>
             </div>

@@ -1,10 +1,19 @@
-const modalAddClose = document.querySelector('#modalAddClose')
-const modalBgAdd = document.querySelector('#modalBgAdd')
+// AddContact modal
 const cName = document.getElementById('contactName')
 const cNumber = document.getElementById('contactNumber')
 const cEmail = document.getElementById('contactEmail')
 const cAddress = document.getElementById('contactAddress')
 const cNotes = document.getElementById('contactNotes')
+const modalAddClose = document.querySelector('#modalAddClose')
+const modalBgAdd = document.querySelector('#modalBgAdd')
+//ViewEditContact Modal
+const veName = document.getElementById('veName')
+const veNumber = document.getElementById('veNumber')
+const veEmail = document.getElementById('veEmail')
+const veAddress = document.getElementById('veAddress')
+const veNotes = document.getElementById('veNotes')
+const modalBgViewEdit = document.querySelector('#modalBgViewEdit')
+const inputFields = document.getElementsByClassName('formInput-ve')
 
 //Opens add modal
 const addBtn = document.querySelector('.addBtn')
@@ -96,7 +105,7 @@ function displayContacts(){
         let id = contact.id
 
         cContainer.innerHTML += `<div class="contact">
-                                    <div onclick="viewContact(${id})" class="contact-info">
+                                    <div onclick="viewEditContact(${id})" class="contact-info">
                                         <h2 class="main-info">${name}</h2>
                                         <h4 class="sub-info">${number}</h4>
                                     </div>
@@ -159,3 +168,168 @@ function deleteContact(id){
     //Display contacts
     displayContacts()
 }
+
+//Function viewEditContact allows the user to see and update the contact details
+function viewEditContact(id){
+    const updateBtn = document.querySelector('.updateBtn')
+    const cancelBtn = document.querySelector('.cancelBtn')
+    const editBtn = document.querySelector('.editBtn')
+    const modalViewEditClose = document.querySelector('#modalViewEditClose')
+    const viewEditForm = document.querySelector('#viewEditForm')
+    
+    //Display modal
+    modalBgViewEdit.style.display = 'block'
+
+    //Make the form look uneditable
+    for(let field of inputFields){
+        field.style.borderBottom = 'none'
+    }
+
+    //Make the form uneditable
+    for(let field of inputFields){
+        field.setAttribute('readonly',1)
+    }
+
+    //Fetch contacts from local storage
+    const contacts = JSON.parse(localStorage.getItem('contacts'))
+    //Loop through contacts
+    for(let contact of contacts){
+        if(contact.id == id){
+            veName.value = contact.name
+            veNumber.value = contact.number
+            veEmail.value = contact.email
+            veAddress.value = contact.address
+            veNotes.value = contact.notes
+            //Sets a placeholder when there's no value
+                if(contact.email == '')
+                veEmail.placeholder = "No information available"
+                if(contact.address == '')
+                veAddress.placeholder = "No information available"
+                if(contact.notes == '')
+                veNotes.placeholder = "No information available"
+        }
+    }
+
+    //Event listener for When the edit button is clicked
+    editBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        //Make the field look editable
+        for(let field of inputFields){
+        field.style.borderBottom = '1px solid gray'
+        }
+
+        //Make the field editable
+        for(let field of inputFields){
+        field.removeAttribute('readonly')
+        }
+
+        //Hides the edit button and displays the update and cancel button
+        editBtn.style.display = 'none'
+        updateBtn.style.display = 'block'
+        cancelBtn.style.display = 'block'
+
+    })
+
+
+    //Event listener for when the cancel button is clicked
+    cancelBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        //Displays the edit button and hides the update and cancel button
+        editBtn.style.display = 'block'
+        updateBtn.style.display = 'none'
+        cancelBtn.style.display = 'none'
+        
+        //Make the form look uneditable
+        for(let field of inputFields){
+            field.style.borderBottom = 'none'
+        }
+
+        //Make the form uneditable
+        for(let field of inputFields){
+            field.setAttribute('readonly',1)
+        }
+    })
+
+
+    //Close modal
+    modalViewEditClose.addEventListener('click', () => {
+        modalBgViewEdit.style.display = 'none'
+        
+        //Displays the edit button and hides the update and cancel button
+        editBtn.style.display = 'block'
+        updateBtn.style.display = 'none'
+        cancelBtn.style.display = 'none'
+
+        //Make the form uneditable
+        for(let field of inputFields){
+            field.setAttribute('readonly',1)
+        }
+    })
+
+
+    //Event listener for when the form is submitted
+    viewEditForm.addEventListener('submit', (e) => {
+        //Displays the edit button and hides the update and cancel button
+        editBtn.style.display = 'block'
+        updateBtn.style.display = 'none'
+        cancelBtn.style.display = 'none'
+
+        //Make the form look uneditable
+        for(let field of inputFields){
+            field.style.borderBottom = 'none'
+        }
+
+        //Make the form uneditable
+        for(let field of inputFields){
+            field.setAttribute('readonly',1)
+        }
+
+        //Updates the contact
+        for(let contact of contacts){
+            if(contact.id == id){
+                e.preventDefault()
+                updateContact(contact,contacts)
+            }
+        }
+
+        localStorage.setItem('contacts', JSON.stringify(contacts))
+    })
+
+}
+
+
+//Function updateContact updates the contact object
+function updateContact(contact,contacts){
+    //Updates the contact
+    contact.name = veName.value
+    contact.number = veNumber.value
+    contact.email = veEmail.value
+    contact.address = veAddress.value
+    contact.notes = veNotes.value
+            
+    //Put back to local storage
+    localStorage.setItem('contacts', JSON.stringify(contacts))
+
+    displayContacts()
+ }
+
+ //Filter search function
+const searchBar = document.getElementById('searchBar')
+searchBar.addEventListener('keyup', (e) => {
+    const term = e.target.value.toLowerCase()
+    const cContainer = document.getElementById('contactsContainer')
+    const contacts = cContainer.querySelectorAll('.contact')
+    
+    Array.from(contacts).forEach((contact) => {
+        const cName = contact.firstElementChild.querySelector('h2').textContent
+        const cNumber = contact.firstElementChild.querySelector('h4').textContent
+
+        if(cName.toLowerCase().substr(0, term.length) == term || cNumber.toLowerCase().indexOf(term) != -1){
+            contact.style.display = 'flex'
+        } else {
+            contact.style.display = 'none'
+        }
+    })
+ })
