@@ -38,8 +38,6 @@ let contactID = localStorage.getItem('ID')
 if(!contactID)
     contactID = 0
 
-
-
 //Listen to form submit
 document.getElementById('form').addEventListener('submit', function(e){
     e.preventDefault()
@@ -108,13 +106,38 @@ function displayContacts(){
         let email = contact.email
         let id = contact.id
 
-        cContainer.innerHTML += `<div class="contact">
-                                    <div onclick="viewEditContact(${id})" class="contact-info">
-                                        <h2 class="main-info">${name}</h2>
-                                        <h4 class="sub-info">${number}</h4>
-                                    </div>
-                                    <button onclick="confirmDel(${id})" class="deleteBtn">X</button>
-                                </div>`
+        const contactDiv = document.createElement('div')
+        contactDiv.classList.add("contact")
+        cContainer.append(contactDiv)
+
+        const contactInfo = document.createElement('div')
+        contactInfo.classList.add("contact-info")
+        contactDiv.append(contactInfo)
+        contactInfo.addEventListener('click', () => viewEditContact(id))
+
+        const mainInfo = document.createElement('h2')
+        mainInfo.classList.add("main-info")
+        mainInfo.innerText = name
+        contactInfo.append(mainInfo)
+
+        const subInfo = document.createElement('h4')
+        subInfo.classList.add("sub-info")
+        subInfo.innerText = number
+        contactInfo.append(subInfo)
+
+        const deleteBtn = document.createElement('button')
+        deleteBtn.classList.add("deleteBtn")
+        deleteBtn.innerText = 'X'
+        contactDiv.append(deleteBtn)
+        deleteBtn.addEventListener('click', () => confirmDel(id))
+
+        // cContainer.innerHTML += `<div class="contact">
+        //                             <div onclick="viewEditContact(${id})" class="contact-info">
+        //                                 <h2 class="main-info">${name}</h2>
+        //                                 <h4 class="sub-info">${number}</h4>
+        //                             </div>
+        //                             <button onclick="confirmDel(${id})" class="deleteBtn">X</button>
+        //                         </div>`
         
     }
 
